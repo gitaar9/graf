@@ -78,6 +78,9 @@ def get_data(config):
     elif dset_type == 'cub':
         dset = CUB(**kwargs)
 
+    elif dset_type == 'ships':
+        dset = Ships(**kwargs)
+
     dset.H = dset.W = imsize
     dset.focal = W/2 * 1 / np.tan((.5 * fov * np.pi/180.))
     radius = config['data']['radius']

@@ -86,3 +86,12 @@ class CelebAHQ(ImageDataset):
             img = self.transform(img)
         
         return img
+
+
+class Ships(ImageDataset):
+    def __init__(self, *args, **kwargs):
+        super(Ships, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def _get_files(root_dir):
+        return glob.glob(f'{root_dir}/*/rendering/*.png')
