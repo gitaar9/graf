@@ -40,7 +40,7 @@ discriminator:
   ndf: 64
   hflip: False                # Randomly flip discriminator input horizontally
 training:
-  outdir: ./results
+  outdir: /data/s2576597/graf_results
   model_file: model.pt
   monitoring: tensorboard
   use_amp: False               # Use automated mixed precision
