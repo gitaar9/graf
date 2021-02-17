@@ -12,4 +12,4 @@ ml Anaconda3/2020.11
 
 conda activate graf
 
-python -u train.py configs/default2.yaml
+python -u train.py configs/carla_mine.yaml
