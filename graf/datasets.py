@@ -94,4 +94,4 @@ class Ships(ImageDataset):
 
     @staticmethod
     def _get_files(root_dir):
-        return glob.glob(f'{root_dir}/*/rendering/*.png')
+        return glob.glob(f'{root_dir}/*/*.png')

@@ -1,8 +1,8 @@
-expname: ships
+expname: ships_256
 data:
   datadir: /data/s2576597/graf_datasets/ships_with_angles
   type: ships
-  imsize: 64
+  imsize: 256
   white_bkgd: True
   near: 1.
   far: 6.

@@ -1,4 +1,4 @@
-expname: default
+expname: carla_mine
 data:
   datadir: data/carla
   type: carla
