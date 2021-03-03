@@ -95,3 +95,13 @@ class Ships(ImageDataset):
     @staticmethod
     def _get_files(root_dir):
         return glob.glob(f'{root_dir}/*/*/rgb/*.png')
+
+
+class RealCars(ImageDataset):
+    def __init__(self, *args, **kwargs):
+        super(RealCars, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def _get_files(root_dir):
+        return glob.glob(f'{root_dir}/*.jpg.png')
+

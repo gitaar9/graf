@@ -81,6 +81,9 @@ def get_data(config):
     elif dset_type == 'ships':
         dset = Ships(**kwargs)
 
+    elif dset_type == 'realcars':
+        dset = RealCars(**kwargs)
+
     dset.H = dset.W = imsize
     dset.focal = W/2 * 1 / np.tan((.5 * fov * np.pi/180.))
     radius = config['data']['radius']
@@ -97,7 +100,7 @@ def get_data(config):
     render_poses = get_render_poses(render_radius, angle_range=angle_range, theta=theta, N=N)
 
     print('Loaded {}'.format(dset_type), imsize, len(dset), render_poses.shape, [H,W,dset.focal,dset.radius], config['data']['datadir'])
-    return dset, [H,W,dset.focal,dset.radius], render_poses
+    return dset, [H, W, dset.focal, dset.radius], render_poses
 
 
 def get_render_poses(radius, angle_range=(0, 360), theta=0, N=40, swap_angles=False):
