@@ -103,5 +103,5 @@ class RealCars(ImageDataset):
 
     @staticmethod
     def _get_files(root_dir):
-        return glob.glob(f'{root_dir}/*.jpg.png')
+        return glob.glob(f'{root_dir}/*.jpg')
 
