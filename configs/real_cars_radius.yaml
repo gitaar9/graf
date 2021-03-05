@@ -1,4 +1,4 @@
-expname: real_cars_radius
+expname: real_cars_radius_with_limited_v
 data:
   imsize: 128
   datadir: /data/s2576597/graf_datasets/real_cars
