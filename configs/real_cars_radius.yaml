@@ -5,8 +5,10 @@ data:
   type: realcars
   radius: 9,12
   near: 7.5
-  far: 12.5
+  far: 13.5
   fov: 30
+  vmin: 0.24999999999999994    # 60 deg
+  vmax: 0.5435778713738291     # 95 deg
 discriminator:
   hflip: True
 training:
