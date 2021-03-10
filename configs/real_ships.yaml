@@ -1,0 +1,15 @@
+expname: real_ships
+data:
+  imsize: 128
+  datadir: /data/s2576597/graf_datasets/masked_marvel
+  type: realships
+  radius: 9,12
+  near: 7.5
+  far: 13.5
+  fov: 30
+  vmin: 0.24999999999999994    # 60 deg
+  vmax: 0.5435778713738291     # 95 deg
+discriminator:
+  hflip: True
+training:
+  outdir: /data/s2576597/graf_real_ships_results

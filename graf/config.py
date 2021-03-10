@@ -84,6 +84,9 @@ def get_data(config):
     elif dset_type == 'realcars':
         dset = RealCars(**kwargs)
 
+    elif dset_type == 'realships':
+        dset = RealShips(**kwargs)
+
     dset.H = dset.W = imsize
     dset.focal = W/2 * 1 / np.tan((.5 * fov * np.pi/180.))
     radius = config['data']['radius']
