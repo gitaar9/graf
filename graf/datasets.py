@@ -114,3 +114,12 @@ class RealShips(ImageDataset):
     def _get_files(root_dir):
         return glob.glob(f'{root_dir}/W*/*.jpg')
 
+
+class BalancedRealShips(ImageDataset)
+    def __init__(self, *args, **kwargs):
+        super(BalancedRealShips, self).__init__(*args, **kwargs)
+
+    @staticmethod
+    def _get_files(root_dir):
+        return glob.glob(f'{root_dir}/*/*.jpg')
+

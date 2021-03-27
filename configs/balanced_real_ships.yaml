@@ -1,0 +1,15 @@
+expname: real_ships
+data:
+  imsize: 128
+  datadir: /data/s2576597/graf_datasets/my_marvel_balanced_white
+  type: balancedrealships
+  radius: 9,12
+  near: 7.5
+  far: 13.5
+  fov: 30
+  vmin: 0.0    # 0 deg
+  vmax: 0.25     # 60 deg
+discriminator:
+  hflip: True
+training:
+  outdir: /data/s2576597/graf_balanced_real_ships_results
