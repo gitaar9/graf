@@ -115,7 +115,7 @@ class RealShips(ImageDataset):
         return glob.glob(f'{root_dir}/W*/*.jpg')
 
 
-class BalancedRealShips(ImageDataset)
+class BalancedRealShips(ImageDataset):
     def __init__(self, *args, **kwargs):
         super(BalancedRealShips, self).__init__(*args, **kwargs)
 
