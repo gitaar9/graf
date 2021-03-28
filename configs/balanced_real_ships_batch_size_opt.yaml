@@ -14,5 +14,5 @@ discriminator:
 training:
   outdir: /data/s2576597/graf_balanced_real_ships_results
   batch_size: 16
-  lr_g: 0.0003
-  lr_d: 0.00005
+  lr_g: 0.001
+  lr_d: 0.0002
