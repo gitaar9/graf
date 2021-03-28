@@ -1,4 +1,4 @@
-expname: real_ships
+expname: balanced_real_ships_batch
 data:
   imsize: 128
   datadir: /data/s2576597/graf_datasets/my_marvel_balanced_white
