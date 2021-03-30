@@ -1,0 +1,12 @@
+expname: ships_128_black
+data:
+  imsize: 128
+  datadir: /data/s2576597/graf_datasets/ship_renders_black
+  type: ships
+  radius: 1.
+  near: .75
+  far: 1.25
+  fov: 51.0
+  white_bkgd: False
+training:
+  outdir: /data/s2576597/graf_results_black
