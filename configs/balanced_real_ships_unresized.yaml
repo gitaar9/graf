@@ -6,7 +6,7 @@ data:
   radius: 9,12
   near: 7.5
   far: 13.5
-  fov: 25
+  fov: 30
   vmin: 0.0    # 0 deg
   vmax: 0.25     # 60 deg
 discriminator:
