@@ -1,4 +1,4 @@
-expname: balanced_real_ships_unresized
+expname: balanced_real_ships_unresized_2
 data:
   imsize: 128
   datadir: /data/s2576597/graf_datasets/my_marvel_balanced_white_unresized
@@ -13,6 +13,3 @@ discriminator:
   hflip: True
 training:
   outdir: /data/s2576597/graf_balanced_real_ships_unresized_results
-  batch_size: 16
-  lr_g: 0.001
-  lr_d: 0.0002
