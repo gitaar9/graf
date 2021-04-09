@@ -88,6 +88,7 @@ def get_data(config):
         dset = RealShips(**kwargs)
 
     elif dset_type == 'balancedrealships':
+        transforms.transforms.insert(0, CenterCrop(240))
         dset = BalancedRealShips(**kwargs)
 
     dset.H = dset.W = imsize
