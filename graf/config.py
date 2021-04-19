@@ -87,6 +87,9 @@ def get_data(config):
     elif dset_type == 'realships':
         dset = RealShips(**kwargs)
 
+    elif dset_type == 'shapenetcars':
+        dset = ShapeNetCars(**kwargs)
+
     elif dset_type == 'balancedrealships':
         transforms.transforms.insert(0, CenterCrop(240))
         dset = BalancedRealShips(**kwargs)
