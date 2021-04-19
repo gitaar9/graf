@@ -4,7 +4,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:v100:1
 #SBATCH --mem=32GB
-#SBATCH --job-name=graf_carla
+#SBATCH --job-name=sncars_graf
 
 source ../.bashrc
 ml CUDA/10.1.243-GCC-8.3.0
