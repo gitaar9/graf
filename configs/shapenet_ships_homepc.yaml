@@ -1,0 +1,11 @@
+expname: shapenetships_128_new_plan
+data:
+  imsize: 256
+  datadir: /home/gitaar9/AI/TNO/detectron/my_marvel_balanced_white # intentionally wrong
+  type: balancedrealships # intentionally wrong
+  radius: 10.
+  near: 7.5
+  far: 12.5
+  fov: 30.0
+training:
+  outdir: /home/gitaar9/Desktop/tensorboard_test/graf_shapenetships_128_new_plan_remote

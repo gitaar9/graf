@@ -1,0 +1,11 @@
+expname: shapenetcars_128_new_plan
+data:
+  imsize: 128
+  datadir: /scratch/s2576597/graf_datasets/car_renders_train_varying_radius_7_13
+  type: shapenetcars
+  radius: 7, 13
+  near: 7.5
+  far: 12.5
+  fov: 30.0
+training:
+  outdir: /data/s2576597/graf_results/graf_shapenetcars_radius_7_13_128_new_plan

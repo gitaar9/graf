@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#SBATCH --time=71:30:00
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:v100:1
+#SBATCH --mem=32GB
+#SBATCH --job-name=sncars_graf
+
+source ../.bashrc
+ml CUDA/10.1.243-GCC-8.3.0
+ml Python/3.7.4-GCCcore-8.3.0
+ml Anaconda3/2020.11
+conda activate graf
+
+python -u train.py configs/shapenet_cars_radius_7_13.yaml
