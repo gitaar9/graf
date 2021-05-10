@@ -28,7 +28,7 @@ class Trainer(TrainerBase):
         self.g_optimizer.zero_grad()
 
         with torch.cuda.amp.autocast():
-            x_fake = self.generator(z, y)
+            x_fake, raw = self.generator(z, y)
             d_fake = self.discriminator(x_fake, y)
             gloss = self.compute_loss(d_fake, 1)
         self.scaler.scale(gloss).backward()

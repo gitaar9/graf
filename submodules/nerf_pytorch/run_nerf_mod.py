@@ -127,7 +127,6 @@ def render(H, W, focal, chunk=1024*32, rays=None, c2w=None, ndc=True,
     for k in all_ret:
         k_sh = list(sh[:-1]) + list(all_ret[k].shape[1:])
         all_ret[k] = torch.reshape(all_ret[k], k_sh)
-
     k_extract = ['rgb_map', 'disp_map', 'acc_map']
     ret_list = [all_ret[k] for k in k_extract]
     ret_dict = {k : all_ret[k] for k in all_ret if k not in k_extract}
@@ -223,6 +222,7 @@ def create_nerf(args):
         'raw_noise_std' : args.raw_noise_std,
         'ndc': False,
         'lindisp': False,
+        'retraw': True
     }
 
     render_kwargs_test = {k : render_kwargs_train[k] for k in render_kwargs_train}
@@ -268,6 +268,15 @@ def raw2outputs(raw, z_vals, rays_d, raw_noise_std=0, white_bkgd=False, pytest=F
     return rgb_map, disp_map, acc_map, weights, depth_map
 
 
+def invert_tensor(t):
+    t = t.clone()
+    if len(t.shape) == 3:
+        t[:, :, 0] = t[:, :, 0] * -1
+    elif len(t.shape) == 2:
+        t[:, 0] = t[:, 0] * -1
+    return t
+
+
 def render_rays(ray_batch,
                 network_fn,
                 network_query_fn,
@@ -282,6 +291,12 @@ def render_rays(ray_batch,
                 raw_noise_std=0.,
                 verbose=False,
                 pytest=False):
+    # Half the relevant tensors:
+    half_the_rays = ray_batch.shape[0] // 2
+    ray_batch = ray_batch[:half_the_rays, ...]
+    features = features[:half_the_rays, ...]
+    # End of my code
+
     N_rays = ray_batch.shape[0]
     rays_o, rays_d = ray_batch[:,0:3], ray_batch[:,3:6] # [N_rays, 3] each
     viewdirs = ray_batch[:,-3:] if ray_batch.shape[-1] > 8 else None
@@ -314,6 +329,13 @@ def render_rays(ray_batch,
 
     pts = rays_o[...,None,:] + rays_d[...,None,:] * z_vals[...,:,None] # [N_rays, N_samples, 3]
 
+    # Invert and concatenate
+    pts = torch.cat((pts, invert_tensor(pts)), dim=0)
+    viewdirs = torch.cat((viewdirs, invert_tensor(viewdirs)), dim=0)
+    features = torch.cat((features, features), dim=0)
+    z_vals = torch.cat((z_vals, z_vals), dim=0)
+    rays_d = torch.cat((rays_d, rays_d), dim=0)
+    # End of my code
 
 #     raw = run_network(pts)
     raw = network_query_fn(pts, viewdirs, network_fn, features)

@@ -240,8 +240,9 @@ if __name__ == '__main__':
               generator.decrease_nerf_noise(it)
 
             z = zdist.sample((batch_size,))
-            gloss = trainer.generator_trainstep(y=y, z=z)
+            gloss, symloss = trainer.generator_trainstep(y=y, z=z)
             logger.add('losses', 'generator', gloss, it=it)
+            logger.add('losses', 'sym', symloss, it=it)
 
             if config['training']['take_model_average']:
                 update_average(generator_test, generator,
@@ -265,6 +266,7 @@ if __name__ == '__main__':
                 d_reg_last = logger.get_last('losses', 'regularizer')
                 print('[%s epoch %0d, it %4d, t %0.3f] g_loss = %.4f, d_loss = %.4f, reg=%.4f'
                       % (config['expname'], epoch_idx, it + 1, dt, g_loss_last, d_loss_last, d_reg_last))
+                print(symloss)
 
             # (ii) Sample if necessary
             if ((it % config['training']['sample_every']) == 0) or ((it < 500) and (it % 100 == 0)):

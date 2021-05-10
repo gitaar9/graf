@@ -80,7 +80,7 @@ class Generator(object):
                    rays_to_output(acc), extras
 
         rgb = rays_to_output(rgb)
-        return rgb
+        return rgb, extras['raw']
 
     def decrease_nerf_noise(self, it):
         end_it = 5000

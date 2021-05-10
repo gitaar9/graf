@@ -26,14 +26,22 @@ class Trainer(object):
         self.discriminator.train()
         self.g_optimizer.zero_grad()
 
-        x_fake = self.generator(z, y)
+        x_fake, raw = self.generator(z, y)
         d_fake = self.discriminator(x_fake, y)
         gloss = self.compute_loss(d_fake, 1)
-        gloss.backward()
+
+        # Sym loss
+        half_n_rays = raw.shape[0] // 2
+        target_tensor = torch.cat((raw[half_n_rays:, :, :], raw[:half_n_rays, :, :]), dim=0)
+        target_tensor[:, :, 3] = raw[:, :, 3]  # Only take loss over the alpha channel
+        target_tensor = target_tensor.detach()
+        sym_loss = torch.nn.MSELoss()(raw, target_tensor) * .5
+
+        (gloss + (sym_loss * 33)).backward()
 
         self.g_optimizer.step()
 
-        return gloss.item()
+        return gloss.item(), sym_loss.item()
 
     def discriminator_trainstep(self, x_real, y, z):
         toggle_grad(self.generator, False)
@@ -57,7 +65,7 @@ class Trainer(object):
 
         # On fake data
         with torch.no_grad():
-            x_fake = self.generator(z, y)
+            x_fake, _ = self.generator(z, y)
 
         x_fake.requires_grad_()
         d_fake = self.discriminator(x_fake, y)

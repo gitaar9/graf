@@ -8,4 +8,4 @@ data:
   far: 12.5
   fov: 30.0
 training:
-  outdir: /data/s2576597/graf_results/graf_shapenetships_128_new_plan
+  outdir: /data/s2576597/graf_results/graf_shapenetships_128_mirror
