@@ -110,6 +110,12 @@ class Evaluator(EvaluatorBase):
         depths = reshape(depths)
         print('Done, saving', rgbs.shape)
 
+        if N_samples == 1:
+            imgs = (255 * np.clip(rgbs[0].permute(0, 2, 3, 1).detach().cpu().numpy() / 2 + 0.5, 0, 1)).astype(np.uint8)
+            import cv2
+            cv2.imwrite(basename + 'ref.png', imgs[0])
+            # imageio.mimwrite(fname, imgs, fps=fps, quality=quality)
+
         fps = min(int(N_frames / 2.), 25)          # aim for at least 2 second video
         for i in range(N_samples):
             save_video(rgbs[i], basename + '{:04d}_rgb.mp4'.format(i), as_gif=as_gif, fps=fps)

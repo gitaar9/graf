@@ -8,7 +8,7 @@ from functools import partial
 
 class Generator(object):
     def __init__(self, H, W, focal, radius, ray_sampler, render_kwargs_train, render_kwargs_test, parameters, named_parameters,
-                 range_u=(0,1), range_v=(0.01,0.49), chunk=None, device='cuda', orthographic=False):
+                 range_u=(0, 1), range_v=(0.01, 0.49), chunk=None, device='cuda', orthographic=False):
         self.device = device
         self.H = int(H)
         self.W = int(W)

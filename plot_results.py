@@ -51,12 +51,12 @@ def plot_graf_plots():
 
     all_plotting(
         [carla_path_name, sncars_path_name, snships_path_name],
+        # ['shapenetcars_varying_distance'],
         fid_path,
         'Frechet Inception Distance for GRAF',
         'Epoch',
         'FID'
     )
-    plt.show()
 
     all_plotting(
         [carla_path_name, sncars_path_name, snships_path_name],
@@ -66,7 +66,6 @@ def plot_graf_plots():
         'KID'
     )
 
-    plt.show()
 
 
 # Pi-GAN
@@ -83,7 +82,6 @@ def plot_pi_gan_plots():
         'Epoch',
         'FID'
     )
-    plt.show()
 
 
 def main():

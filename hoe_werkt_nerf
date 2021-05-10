@@ -1,0 +1,6 @@
+Alle code zit in run_nerf_mod in de build_model functie word ook het nerf model getrained.
+De functie om het nerf model te queryen zit in render_kwargs_train
+
+dus wat we kunnen doen is
+    raw = network_query_fn(pts, viewdirs, network_fn, features)
+voor alle pts en die dan plotten
