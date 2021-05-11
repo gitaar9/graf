@@ -1,4 +1,4 @@
-expname: shapenetships_128_new_plan
+expname: shapenetships_128_baseline
 data:
   imsize: 128
   datadir: /scratch/s2576597/graf_datasets/ship_renders_train_upper_hemisphere_30_fov #data/carla
