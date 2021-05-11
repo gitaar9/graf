@@ -8,6 +8,6 @@ data:
   far: 12.5
   fov: 30.0
 training:
-  outdir: /data/s2576597/graf_results/graf_shapenetships_128_mirror_2
+  outdir: /data/s2576597/graf_results/graf_shapenetships_128_mirror_no_loss
 nerf:
-  mirror: True
+  mirror: False

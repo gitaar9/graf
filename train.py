@@ -243,6 +243,7 @@ if __name__ == '__main__':
             gloss, symloss = trainer.generator_trainstep(y=y, z=z)
             logger.add('losses', 'generator', gloss, it=it)
             logger.add('losses', 'sym', symloss, it=it)
+            logger.add('memory', 'gpu', torch.cuda.max_memory_allocated(device=device), it=it)
 
             if config['training']['take_model_average']:
                 update_average(generator_test, generator,

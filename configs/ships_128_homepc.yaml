@@ -10,3 +10,5 @@ data:
 training:
   outdir: ./output
   batch_size: 2
+nerf:
+  mirror: True

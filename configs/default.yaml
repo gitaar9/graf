@@ -27,6 +27,7 @@ nerf:
   perturb: 1.
   raw_noise_std: 1.
   decrease_noise: True
+  mirror: False
 z_dist:
   type: gauss
   dim: 256

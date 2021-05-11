@@ -223,7 +223,7 @@ def create_nerf(args):
         'ndc': False,
         'lindisp': False,
         'retraw': True,
-        'mirror': True
+        'mirror': args.mirror
     }
 
     render_kwargs_test = {k : render_kwargs_train[k] for k in render_kwargs_train}
