@@ -18,7 +18,7 @@ class Trainer(object):
         self.reg_type = reg_type
         self.reg_param = reg_param
 
-    def generator_trainstep(self, y, z):
+    def generator_trainstep(self, y, z, sym_lambda):
         assert(y.size(0) == z.size(0))
         toggle_grad(self.generator, True)
         toggle_grad(self.discriminator, False)
@@ -33,11 +33,11 @@ class Trainer(object):
         # Sym loss
         half_n_rays = raw.shape[0] // 2
         target_tensor = torch.cat((raw[half_n_rays:, :, :], raw[:half_n_rays, :, :]), dim=0)
-        target_tensor[:, :, 3] = raw[:, :, 3]  # Only take loss over the alpha channel
+        target_tensor[:, :, :3] = raw[:, :, :3]  # Only take loss over the alpha channel
         target_tensor = target_tensor.detach()
         sym_loss = torch.nn.MSELoss()(raw, target_tensor) * .5
 
-        (gloss + (sym_loss * 33)).backward()
+        (gloss + (sym_loss * sym_lambda)).backward()
 
         self.g_optimizer.step()
 
@@ -65,7 +65,9 @@ class Trainer(object):
 
         # On fake data
         with torch.no_grad():
+            self.generator.normal_mode()
             x_fake, _ = self.generator(z, y)
+            self.generator.mirror_mode()
 
         x_fake.requires_grad_()
         d_fake = self.discriminator(x_fake, y)

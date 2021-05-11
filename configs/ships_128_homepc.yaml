@@ -10,5 +10,6 @@ data:
 training:
   outdir: ./output
   batch_size: 2
+  sym_lambda: 33
 nerf:
   mirror: True

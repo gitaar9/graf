@@ -47,6 +47,7 @@ if __name__ == '__main__':
     save_every = config['training']['save_every']
     backup_every = config['training']['backup_every']
     save_best = config['training']['save_best']
+    sym_lambda = config['training']['sym_lambda']
     assert save_best=='fid' or save_best=='kid', 'Invalid save best metric!'
 
     out_dir = os.path.join(config['training']['outdir'], config['expname'])
@@ -240,7 +241,7 @@ if __name__ == '__main__':
               generator.decrease_nerf_noise(it)
 
             z = zdist.sample((batch_size,))
-            gloss, symloss = trainer.generator_trainstep(y=y, z=z)
+            gloss, symloss = trainer.generator_trainstep(y=y, z=z, sym_lambda=sym_lambda)
             logger.add('losses', 'generator', gloss, it=it)
             logger.add('losses', 'sym', symloss, it=it)
             logger.add('memory', 'gpu', torch.cuda.max_memory_allocated(device=device), it=it)

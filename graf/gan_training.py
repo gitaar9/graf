@@ -17,9 +17,9 @@ class Trainer(TrainerBase):
         if self.use_amp:
             self.scaler = torch.cuda.amp.GradScaler()
 
-    def generator_trainstep(self, y, z):
+    def generator_trainstep(self, y, z, sym_lambda):
         if not self.use_amp:
-            return super(Trainer, self).generator_trainstep(y, z)
+            return super(Trainer, self).generator_trainstep(y, z, sym_lambda)
         assert (y.size(0) == z.size(0))
         toggle_grad(self.generator, True)
         toggle_grad(self.discriminator, False)

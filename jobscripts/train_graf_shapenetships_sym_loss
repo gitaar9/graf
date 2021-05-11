@@ -12,4 +12,4 @@ ml Python/3.7.4-GCCcore-8.3.0
 ml Anaconda3/2020.11
 conda activate graf
 
-python -u train.py configs/shapenet_ships_baseline.yaml
+python -u train.py configs/shapenet_ships_sym_loss.yaml

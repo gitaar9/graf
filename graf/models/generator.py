@@ -43,6 +43,7 @@ class Generator(object):
         self.use_test_kwargs = False
 
         self.render = partial(render, H=self.H, W=self.W, focal=self.focal, chunk=self.chunk)
+        self.mirror_allowed = self.render_kwargs_train['mirror']
 
     def __call__(self, z, y=None, rays=None):
         bs = z.shape[0]
@@ -128,3 +129,10 @@ class Generator(object):
         self.render_kwargs_train['network_fn'].eval()
         if self.render_kwargs_train['network_fine'] is not None:
             self.render_kwargs_train['network_fine'].eval()
+
+    def mirror_mode(self):
+        if self.mirror_allowed:
+            self.render_kwargs_train['mirror'] = True
+
+    def normal_mode(self):
+        self.render_kwargs_train['mirror'] = False

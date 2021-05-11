@@ -1,4 +1,4 @@
-expname: shapenetships_128_new_plan
+expname: shapenetships_128_sym_loss
 data:
   imsize: 128
   datadir: /scratch/s2576597/graf_datasets/ship_renders_train_upper_hemisphere_30_fov #data/carla
@@ -8,6 +8,8 @@ data:
   far: 12.5
   fov: 30.0
 training:
-  outdir: /data/s2576597/graf_results/graf_shapenetships_128
+  outdir: /data/s2576597/graf_results/graf_shapenetships_sym_loss_experiments
+  sym_lambda: 33
+  batch_size: 16
 nerf:
-  mirror: False
+  mirror: True
