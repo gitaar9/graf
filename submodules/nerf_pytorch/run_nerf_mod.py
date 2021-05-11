@@ -222,12 +222,14 @@ def create_nerf(args):
         'raw_noise_std' : args.raw_noise_std,
         'ndc': False,
         'lindisp': False,
-        'retraw': True
+        'retraw': True,
+        'mirror': True
     }
 
     render_kwargs_test = {k : render_kwargs_train[k] for k in render_kwargs_train}
     render_kwargs_test['perturb'] = False
     render_kwargs_test['raw_noise_std'] = 0.
+    render_kwargs_test['mirror'] = False
 
     return render_kwargs_train, render_kwargs_test, grad_vars, named_params
 
@@ -283,6 +285,7 @@ def render_rays(ray_batch,
                 N_samples,
                 features=None,
                 retraw=False,
+                mirror=False,
                 lindisp=False,
                 perturb=0.,
                 N_importance=0,
@@ -291,11 +294,11 @@ def render_rays(ray_batch,
                 raw_noise_std=0.,
                 verbose=False,
                 pytest=False):
-    # Half the relevant tensors:
-    half_the_rays = ray_batch.shape[0] // 2
-    ray_batch = ray_batch[:half_the_rays, ...]
-    features = features[:half_the_rays, ...]
-    # End of my code
+    if mirror:
+        # Half the relevant tensors:
+        half_the_rays = ray_batch.shape[0] // 2
+        ray_batch = ray_batch[:half_the_rays, ...]
+        features = features[:half_the_rays, ...]
 
     N_rays = ray_batch.shape[0]
     rays_o, rays_d = ray_batch[:,0:3], ray_batch[:,3:6] # [N_rays, 3] each
@@ -329,13 +332,13 @@ def render_rays(ray_batch,
 
     pts = rays_o[...,None,:] + rays_d[...,None,:] * z_vals[...,:,None] # [N_rays, N_samples, 3]
 
-    # Invert and concatenate
-    pts = torch.cat((pts, invert_tensor(pts)), dim=0)
-    viewdirs = torch.cat((viewdirs, invert_tensor(viewdirs)), dim=0)
-    features = torch.cat((features, features), dim=0)
-    z_vals = torch.cat((z_vals, z_vals), dim=0)
-    rays_d = torch.cat((rays_d, rays_d), dim=0)
-    # End of my code
+    if mirror:
+        # Invert and concatenate
+        pts = torch.cat((pts, invert_tensor(pts)), dim=0)
+        viewdirs = torch.cat((viewdirs, invert_tensor(viewdirs)), dim=0)
+        features = torch.cat((features, features), dim=0)
+        z_vals = torch.cat((z_vals, z_vals), dim=0)
+        rays_d = torch.cat((rays_d, rays_d), dim=0)
 
 #     raw = run_network(pts)
     raw = network_query_fn(pts, viewdirs, network_fn, features)
