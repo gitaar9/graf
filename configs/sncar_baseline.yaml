@@ -1,0 +1,15 @@
+expname: sncar_128_baseline
+data:
+  imsize: 128
+  datadir: /data/s2576597/graf_datasets/car_renders_train_upper_hemisphere_30_fov
+  type: shapenetcars
+  radius: 10.
+  near: 7.5
+  far: 12.5
+  fov: 30.0
+training:
+  outdir: /data/s2576597/graf_results/graf_sncar_sym_loss_experiments
+  sym_lambda: 0
+  batch_size: 32
+nerf:
+  mirror: True
