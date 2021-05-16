@@ -10,6 +10,6 @@ data:
 training:
   outdir: /data/s2576597/graf_results/graf_sncar_sym_loss_experiments
   sym_lambda: 0
-  batch_size: 32
+  batch_size: 24
 nerf:
   mirror: False
