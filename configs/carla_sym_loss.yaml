@@ -1,0 +1,15 @@
+expname: carla_sym_loss
+data:
+  imsize: 128
+  datadir: /data/s2576597/graf_datasets/carla
+  type: carla
+  radius: 10.
+  near: 7.5
+  far: 12.5
+  fov: 30.0
+training:
+  outdir: /data/s2576597/graf_results/final_graf_results
+  sym_lambda: 33
+  batch_size: 16
+nerf:
+  mirror: True
