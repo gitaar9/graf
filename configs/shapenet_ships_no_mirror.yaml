@@ -1,13 +1,13 @@
-expname: shapenetships_128_baseline
+expname: shapenetships_no_mirror
 data:
   imsize: 128
-  datadir: /scratch/s2576597/graf_datasets/ship_renders_train_upper_hemisphere_30_fov #data/carla
+  datadir: /scratch/s2576597/pixel_nerf_datasets/ship_renders_train_upper_hemisphere_30_fov_v2_pixel_nerf/ships_train
   type: shapenetcars
   radius: 10.
   near: 7.5
   far: 12.5
   fov: 30.0
 training:
-  outdir: /data/s2576597/graf_results/graf_shapenetships_128_mirror_no_loss
+  outdir: /data/s2576597/graf_results/final_graf_results
 nerf:
   mirror: False

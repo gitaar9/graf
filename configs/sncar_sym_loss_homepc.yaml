@@ -1,14 +1,14 @@
 expname: sncar_128_sym_loss
 data:
-  imsize: 128
-  datadir: /data/s2576597/graf_datasets/car_renders_train_upper_hemisphere_30_fov
+  imsize: 80
+  datadir: /samsung_hdd/Files/AI/TNO/shapenet_renderer/car_renders_train_upper_hemisphere_30_fov
   type: shapenetcars
   radius: 10.
   near: 7.5
   far: 12.5
   fov: 30.0
 training:
-  outdir: /data/s2576597/graf_results/graf_sncar_sym_loss_experiments
+  outdir: /samsung_hdd/Files/AI/TNO/graf/trained_models
   sym_lambda: 33
   batch_size: 24
 nerf:
