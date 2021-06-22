@@ -70,4 +70,4 @@ training:
   save_every: 900
   backup_every: 50000
   video_every: 10000
-  lambda_sym: 0
+  sym_lambda: 0
