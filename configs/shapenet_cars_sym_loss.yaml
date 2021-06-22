@@ -1,7 +1,7 @@
-expname: shapenetcars_sym_loss
+expname: shapenetcars_sym_loss_actually_cars
 data:
   imsize: 128
-  datadir: /scratch/s2576597/pixel_nerf_datasets/ship_renders_train_upper_hemisphere_30_fov_v2_pixel_nerf/ships_train
+  datadir: /scratch/s2576597/pixel_nerf_datasets/car_renders_train_upper_hemisphere_30_fov_pixel_nerf/cars_train
   type: shapenetcars
   radius: 10.
   near: 7.5
