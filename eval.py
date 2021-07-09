@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # Evaluation loop
     if args.fid_kid:
         # Specifically generate samples that can be saved
-        n_samples = 10
+        n_samples = 100
         ztest = zdist.sample((n_samples,))
 
         samples, _, _ = evaluator.create_samples(ztest.to(device))
@@ -152,9 +152,7 @@ if __name__ == '__main__':
 
         samples = samples.to(torch.float) / 255
 
-        print(samples.shape)
-        print((get_nsamples(val_loader, 10) / 2 + 0.5).shape)
-        exit()
+        # Their way of saving some images in a grid
         n_vis = 8
         filename = 'fake_samples.png'
         outpath = os.path.join(eval_dir, filename)
@@ -163,9 +161,19 @@ if __name__ == '__main__':
 
         filename = 'real_samples.png'
         outpath = os.path.join(eval_dir, filename)
-        real = get_nsamples(val_loader, n_vis**2) / 2 + 0.5
+        real = get_nsamples(val_loader, n_samples) / 2 + 0.5
         save_image(real[:n_vis ** 2].clone(), outpath, nrow=n_vis)
         print('Plot examples under {}.'.format(outpath))
+
+        # My way of saving all images
+        real_dir = os.path.join(eval_dir, 'real_samples')
+        os.makedirs(real_dir, exist_ok=True)
+        fake_dir = os.path.join(eval_dir, 'fake_samples')
+        os.makedirs(fake_dir, exist_ok=True)
+        for idx, (fake_image, real_image) in enumerate(zip(samples, real)):
+            filename = f"{idx:06d}.jpg"
+            save_image(fake_image.clone(), os.path.join(fake_dir, filename))
+            save_image(real_image.clone(), os.path.join(real_dir, filename))
 
         # Compute FID and KID
         fid_cache_file = os.path.join(out_dir, 'fid_cache_train.npz')
