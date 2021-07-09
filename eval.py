@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # Evaluation loop
     if args.fid_kid:
         # Specifically generate samples that can be saved
-        n_samples = 1000
+        n_samples = 10
         ztest = zdist.sample((n_samples,))
 
         samples, _, _ = evaluator.create_samples(ztest.to(device))
@@ -152,6 +152,9 @@ if __name__ == '__main__':
 
         samples = samples.to(torch.float) / 255
 
+        print(samples.shape)
+        print((get_nsamples(val_loader, 10) / 2 + 0.5).shape)
+        exit()
         n_vis = 8
         filename = 'fake_samples.png'
         outpath = os.path.join(eval_dir, filename)
@@ -284,3 +287,12 @@ if __name__ == '__main__':
 
         # reset radius for generator
         generator_test.radius = radius_orig
+
+
+# python /home/s2576597/graf/eval.py /home/s2576597/graf/configs/carla_no_mirror.yaml --fid_kid
+# Increase n_samples!
+# No mirror:
+# Saved FID (48.1) and KIDx100 (2.17) to /data/s2576597/graf_results/final_graf_results/carla_no_mirror/eval/fid_kid.csv.
+# Sym loss:
+# Saved FID (45.6) and KIDx100 (2.01) to /data/s2576597/graf_results/final_graf_results/carla_sym_loss/eval/fid_kid.csv.
+
