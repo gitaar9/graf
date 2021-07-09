@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#SBATCH --time=02:00:00
+#SBATCH --partition=gpushort
+#SBATCH --gres=gpu:v100:1
+#SBATCH --mem=32GB
+#SBATCH --job-name=graf_fid
+
+source ../.bashrc
+ml CUDA/10.1.243-GCC-8.3.0
+ml Python/3.7.4-GCCcore-8.3.0
+ml Anaconda3/2020.11
+conda activate graf
+
+python -u eval.py configs/carla_no_mirror.yaml --fid_kid
+python -u eval.py configs/carla_sym_loss.yaml --fid_kid
+
+python -u eval.py configs/shapenet_cars_no_mirror.yaml --fid_kid
+python -u eval.py configs/shapenet_cars_sym_loss.yaml --fid_kid
+
+python -u eval.py configs/shapenet_ships_no_mirror.yaml --fid_kid
+python -u eval.py configs/shapenet_ships_sym_loss.yaml --fid_kid

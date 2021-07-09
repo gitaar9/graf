@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # Evaluation loop
     if args.fid_kid:
         # Specifically generate samples that can be saved
-        n_samples = 1000
+        n_samples = 10000
         ztest = zdist.sample((n_samples,))
 
         samples, _, _ = evaluator.create_samples(ztest.to(device))
@@ -303,4 +303,5 @@ if __name__ == '__main__':
 # Saved FID (48.1) and KIDx100 (2.17) to /data/s2576597/graf_results/final_graf_results/carla_no_mirror/eval/fid_kid.csv.
 # Sym loss:
 # Saved FID (45.6) and KIDx100 (2.01) to /data/s2576597/graf_results/final_graf_results/carla_sym_loss/eval/fid_kid.csv.
+# Saved FID (43.1) and KIDx100 (1.75) to /data/s2576597/graf_results/final_graf_results/carla_sym_loss/eval/fid_kid.csv.
 
