@@ -139,7 +139,7 @@ if __name__ == '__main__':
     # Evaluation loop
     if args.fid_kid:
         # Specifically generate samples that can be saved
-        n_samples = 100
+        n_samples = 1000
         ztest = zdist.sample((n_samples,))
 
         samples, _, _ = evaluator.create_samples(ztest.to(device))
