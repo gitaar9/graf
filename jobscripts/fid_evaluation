@@ -12,7 +12,8 @@ ml Python/3.7.4-GCCcore-8.3.0
 ml Anaconda3/2020.11
 conda activate graf
 
-python -u eval.py configs/shapenet_cars_sym_loss.yaml --fid_kid
+python -u eval.py configs/shapenet_cars_no_mirror.yaml --fid_kid
+#python -u eval.py configs/shapenet_cars_sym_loss.yaml --fid_kid
 
 #python -u eval.py configs/shapenet_ships_sym_loss.yaml --fid_kid
 #python -u eval.py configs/shapenet_ships_no_mirror.yaml --fid_kid
