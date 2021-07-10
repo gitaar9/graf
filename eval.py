@@ -71,6 +71,10 @@ if __name__ == '__main__':
     device = torch.device("cuda:0")
 
     # Dataset
+    if config['data']['datadir'][-6:] == '_train':
+        config['data']['datadir'] = config['data']['datadir'][:-6] + '_test'
+        print(f"DATADIR CHANGED TO {config['data']['datadir']}")
+
     train_dataset, hwfr, render_poses = get_data(config)
     # in case of orthographic projection replace focal length by far-near
     if config['data']['orthographic']:
